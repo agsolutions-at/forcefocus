@@ -1,6 +1,6 @@
 {
-  "name": "@agsolutions/forcefocus",
-  "version": "0.0.0",
+  "name": "@agsolutions-at/forcefocus",
+  "version": "0.0.2",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {

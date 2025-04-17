@@ -5,9 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@agsolutions/forcefocus@workspace:.":
+"@agsolutions-at/forcefocus@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@agsolutions/forcefocus@workspace:."
+  resolution: "@agsolutions-at/forcefocus@workspace:."
   dependencies:
     "@napi-rs/cli": "npm:^2.18.4"
     ava: "npm:^6.0.1"
