@@ -6,7 +6,12 @@
   "repository": {
     "url": "https://github.com/agsolutions-at/forcefocus"
   },
-  "keywords": ["electron", "nodejs"],
+  "keywords": [
+    "electron",
+    "nodejs",
+    "napi-rs",
+    "rust"
+  ],
   "os": [
     "win32"
   ],
