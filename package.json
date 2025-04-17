@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "main": "index.js",
   "types": "index.d.ts",
+  "repository": {
+    "url": "https://github.com/agsolutions-at/forcefocus"
+  },
   "napi": {
     "name": "forcefocus",
     "triples": {
