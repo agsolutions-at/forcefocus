@@ -30,13 +30,13 @@ pub fn focus_window(handle_buffer: Buffer) -> Result<()> {
   // Imitate pressing the Alt key if not already pressed
   let mut pressed = false;
   unsafe {
-    if GetAsyncKeyState(VK_MENU.0 as i32) & 0x8000 == 0 {
+    if GetAsyncKeyState(VK_MENU) & 0x8000u16 == 0 {
       pressed = true;
       keybd_event(VK_MENU.0 as u8, 0, KEYEVENTF_EXTENDEDKEY, 0);
     }
 
-    SetForegroundWindow(hwnd);
-    SetFocus(Some(hwnd));
+    let _ = SetForegroundWindow(hwnd);
+    let _ = SetFocus(Some(hwnd));
 
     if pressed {
       keybd_event(
