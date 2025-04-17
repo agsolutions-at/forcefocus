@@ -34,5 +34,5 @@
     "universal": "napi universal",
     "version": "napi version"
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "pnpm@10.7.1"
 }
