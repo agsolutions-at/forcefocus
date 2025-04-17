@@ -1,6 +1,9 @@
 {
   "name": "@agsolutions-at/forcefocus-win32-arm64-msvc",
   "version": "0.0.0",
+  "repository": {
+    "url": "https://github.com/agsolutions-at/forcefocus"
+  },
   "os": [
     "win32"
   ],
