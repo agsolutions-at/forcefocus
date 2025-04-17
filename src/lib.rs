@@ -7,7 +7,6 @@ use windows::{
   Win32::Foundation::HWND,
   Win32::UI::Input::KeyboardAndMouse::{keybd_event, GetAsyncKeyState, SetFocus, VK_MENU, KEYEVENTF_EXTENDEDKEY, KEYEVENTF_KEYUP},
   Win32::UI::WindowsAndMessaging::{SetForegroundWindow},
-  Win32::System::LibraryLoader::GetModuleHandleW,
 };
 
 #[napi]
@@ -27,7 +26,7 @@ pub fn focus_window(handle_buffer: &[u8]) {
     }
 
     SetForegroundWindow(hwnd);
-    SetFocus(hwnd);
+    SetFocus(Some(hwnd));
 
     if pressed {
       keybd_event(VK_MENU.0 as u8, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
