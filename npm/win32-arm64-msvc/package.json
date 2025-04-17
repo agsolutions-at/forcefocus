@@ -1,9 +1,12 @@
 {
   "name": "@agsolutions-at/forcefocus-win32-arm64-msvc",
   "version": "0.0.0",
+  "author": "agsolutions GmbH",
+  "license": "MIT",
   "repository": {
     "url": "https://github.com/agsolutions-at/forcefocus"
   },
+  "keywords": ["electron", "nodejs"],
   "os": [
     "win32"
   ],
@@ -14,7 +17,6 @@
   "files": [
     "forcefocus.win32-arm64-msvc.node"
   ],
-  "license": "MIT",
   "engines": {
     "node": ">= 10"
   }

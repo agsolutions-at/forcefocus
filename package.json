@@ -1,11 +1,17 @@
 {
   "name": "@agsolutions-at/forcefocus",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "types": "index.d.ts",
+  "author": "agsolutions GmbH",
+  "license": "MIT",
   "repository": {
     "url": "https://github.com/agsolutions-at/forcefocus"
   },
+  "keywords": [
+    "electron",
+    "nodejs"
+  ],
   "napi": {
     "name": "forcefocus",
     "triples": {
@@ -17,7 +23,6 @@
       ]
     }
   },
-  "license": "MIT",
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
     "ava": "^6.0.1"
