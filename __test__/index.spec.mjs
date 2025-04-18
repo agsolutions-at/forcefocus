@@ -1,8 +1,8 @@
 import test from 'ava'
 
-//import { sum } from '../index.js'
+import { focusWindow } from '../index.js'
 
-test('sum', (t) => {
-  // t.is(sum(1, 2), 3)
-  t.is(1 + 2, 3)
+test('wrong window handle throw error', (t) => {
+  const error = t.throws(() => focusWindow(Buffer.from('wrong buffer')))
+  t.is(error.message, "Invalid HWND buffer size")
 })

@@ -27,7 +27,8 @@ pub fn focus_window(handle_buffer: Buffer) -> Result<()> {
 
   let hwnd = HWND(handle as *mut _);
 
-  // Imitate pressing the Alt key if not already pressed
+  // To unlock SetForegroundWindow we need to imitate pressing the Alt key
+  // This circumvents the ForegroundLockTimeout in Windows 10
   let mut pressed = false;
   unsafe {
     if (GetAsyncKeyState(VK_MENU.0 as i32) as u16 & 0x8000) == 0 {
