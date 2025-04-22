@@ -1,5 +1,12 @@
 # forcefocus
 
+[![npm version](https://img.shields.io/npm/v/@agsolutions-at/forcefocus.svg)](https://www.npmjs.com/package/@agsolutions-at/forcefocus)
+[![npm downloads](https://img.shields.io/npm/dm/@agsolutions-at/forcefocus.svg)](https://www.npmjs.com/package/@agsolutions-at/forcefocus)
+[![license](https://img.shields.io/npm/l/@agsolutions-at/forcefocus.svg)](./LICENSE)
+[![node](https://img.shields.io/node/v/@agsolutions-at/forcefocus)](https://nodejs.org)
+[![platforms](https://img.shields.io/badge/platforms-Windows-blue)](#)
+[![CI](https://github.com/agsolutions-at/forcefocus/actions/workflows/CI.yml/badge.svg)](https://github.com/agsolutions-at/forcefocus/actions/workflows/CI.yml)
+
 `forcefocus` is a modern reimplementation of [robinwassen/forcefocus](https://github.com/robinwassen/forcefocus), featuring prebuilt bindings written
 in Rust for enhanced performance and reliability. This project provides the same native logic and usage as the original `forcefocus` tool, enabling
 you to programmatically bring a specific window to the foreground on Windows.
@@ -7,7 +14,7 @@ you to programmatically bring a specific window to the foreground on Windows.
 ## Features
 
 - Heavily inspired by the original `forcefocus` project.
-- Prebuilt Rust bindings for improved performance and cross-platform compatibility.
+- Prebuilt Rust bindings.
 - Easy-to-use Node.js interface for integrative purposes.
 - No need to build from source when used in an Electron project anymore.
 
