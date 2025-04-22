@@ -76,6 +76,117 @@ If you prefer to build this package from source, follow these steps:
    yarn build
    ```
 
+## Using `electron-builder` to bundle the platform-specific native module
+
+When building an Electron app, you may need native modules that are specifically compiled for your target operating system and architecture (like
+getting the right key to fit the right lock). This script helps make sure the correct .node binaries are downloaded just before packaging the app
+using electron-builder.
+
+```json file=./package.json
+{
+  ...
+  "build": {
+    "beforePack": "./beforePack.js",
+    "files": [
+      ...
+      "!**/node_modules/@agsolutions-at/forcefocus-*/**"
+    ]
+  },
+  ...
+}
+```
+
+Define a `beforePack` hook. Do not include optional dependencies of your build platform.
+
+```typescript file=./beforePack.js
+import path from 'node:path';
+import https from 'node:https';
+import fs from 'node:fs';
+import forceFocusPackage from './app/node_modules/@agsolutions-at/forcefocus/package.json' with { type: 'json' };
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const downloadFile = (url, dest, cb) => {
+   https
+   .get(url, res => {
+      // If redirect
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+         return downloadFile(res.headers.location, dest, cb); // follow redirect
+      }
+
+      const fileStream = fs.createWriteStream(dest);
+      res.pipe(fileStream);
+
+      fileStream.on('finish', () => {
+         fileStream.close(cb); // call callback on finish
+      });
+
+      res.on('error', err => {
+         fs.unlink(dest, () => {});
+         cb(err.message);
+      });
+   })
+   .on('error', err => {
+      cb(err.message);
+   });
+};
+
+const beforePack = context => {
+   const { electronPlatformName, arch } = context;
+
+   let archName;
+   switch (arch) {
+      case 0:
+         archName = 'ia32';
+         break;
+      case 1:
+         archName = 'x64';
+         break;
+      case 2:
+         archName = 'armv7l';
+         break;
+      case 3:
+         archName = 'arm64';
+         break;
+      case 4:
+         archName = 'universal';
+         break;
+      default:
+         throw Error('Unknown arch');
+   }
+
+   if (electronPlatformName === 'win32') {
+      const downloadUrl = `https://github.com/agsolutions-at/forcefocus/releases/download/v${forceFocusPackage.version}/forcefocus.win32-${archName}-msvc.node`;
+      const nativeModulePath = path.join(
+              __dirname,
+              'app',
+              'node_modules',
+              '@agsolutions-at',
+              'forcefocus',
+              `forcefocus.win32-${archName}-msvc.node`
+      );
+      downloadFile(downloadUrl, nativeModulePath, err => {
+         if (err) {
+            console.error('Download error:', err);
+            process.exit(1);
+         } else {
+            console.log('Download forcefocus completed');
+         }
+      });
+   }
+};
+
+export default beforePack;
+```
+
+`beforePack.js`: before your app gets packaged, it sneaks in and places the correct native modules on stage based on the OS and architecture you're
+targeting.
+It detects whether you're building for Windows or macOS, figures out the architecture (x64, arm64, etc.), downloads the correct version of native
+.node files from GitHub releases and saves them into the appropriate module folders.
+
+
 ## Contributing
 
 Contributions are welcomed.
