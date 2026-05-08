@@ -7,13 +7,14 @@ version = "0.0.0"
 crate-type = ["cdylib"]
 
 [dependencies]
-# Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
-napi = { version = "2.12.2", default-features = false, features = ["napi4"] }
-napi-derive = "2.12.2"
-windows = { version = "0.61.1", default-features = false, features = ["Win32_Foundation", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_WindowsAndMessaging"] }
+# napi4 = N-API v4 — sufficient for the simple Buffer-in / void-out surface
+# https://nodejs.org/api/n-api.html#node-api-version-matrix
+napi = { version = "3.8.6", default-features = false, features = ["napi4"] }
+napi-derive = "3.5.5"
+windows = { version = "0.62.2", default-features = false, features = ["Win32_Foundation", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_WindowsAndMessaging"] }
 
 [build-dependencies]
-napi-build = "2.0.1"
+napi-build = "2.3.1"
 
 [profile.release]
 lto = true

@@ -1,8 +1,13 @@
 {
   "name": "@agsolutions-at/forcefocus",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "main": "index.js",
   "types": "index.d.ts",
+  "files": [
+    "CHANGELOG.md",
+    "index.d.ts",
+    "index.js"
+  ],
   "author": "agsolutions GmbH",
   "license": "MIT",
   "repository": {
@@ -15,34 +20,35 @@
     "rust"
   ],
   "napi": {
-    "name": "forcefocus",
-    "triples": {
-      "defaults": false,
-      "additional": [
-        "aarch64-pc-windows-msvc",
-        "x86_64-pc-windows-msvc",
-        "i686-pc-windows-msvc"
-      ]
-    }
+    "binaryName": "forcefocus",
+    "targets": [
+      "aarch64-pc-windows-msvc",
+      "x86_64-pc-windows-msvc",
+      "i686-pc-windows-msvc"
+    ]
   },
   "devDependencies": {
-    "@napi-rs/cli": "^2.18.4",
-    "ava": "^6.0.1"
+    "@napi-rs/cli": "^3.6.2",
+    "ava": "^8.0.0"
   },
   "ava": {
     "timeout": "3m"
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">= 12.17.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "scripts": {
     "artifacts": "napi artifacts",
     "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
-    "prepublishOnly": "napi prepublish -t npm",
+    "prepublishOnly": "napi pre-publish --gh-release -t npm",
     "test": "ava",
-    "universal": "napi universal",
+    "universal": "napi universalize",
     "version": "napi version"
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "yarn@4.14.1"
 }
